@@ -142,7 +142,8 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
       width_pixels = num_cells_x * cell_width,
       height_pixels = num_cells_y * cell_height,
       drawGridLines = function() {
-        ctx.lineWidth = 1;
+        console.log("draw");
+        ctx.lineWidth = 0.1;
         ctx.strokeStyle = "rgba(255, 0, 0, 1)";
         ctx.beginPath();
         // foreach column
@@ -158,6 +159,7 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
         ctx.stroke();
       },
       updateCells = function(cell_array) {
+        console.log("update")
         var length_y = cell_array.length,
             length_x,
             y, x;
@@ -190,9 +192,9 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
           ctx.clearRect(start_x, start_y, cell_width, cell_height);
         }
       },
-      init = function() {
-        //console.log("width_pixels: " + width_pixels);
-        //console.log("height_pixels: " + height_pixels);
+      init = ()=>{
+        console.log("width_pixels: " + width_pixels);
+        console.log("height_pixels: " + height_pixels);
 
         // Resize Canvas
         canvas.width = width_pixels;
@@ -205,6 +207,9 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
   return {
     update: function(cell_array) {
       updateCells(cell_array);
+
+      //Grid Lines
+      // drawGridLines();
     }
   };
 

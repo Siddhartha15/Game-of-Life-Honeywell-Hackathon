@@ -205,11 +205,13 @@ example3[29][33]=1;
 example3[30][33]=1;
 //----------------------------------------------------
 
+
+// Set the required example here..like 0,1,2,3---
 var GAME = new GameOfLife({
   canvas_id:    "life-example6",
   cell_width:   5,
   cell_height:  5,
-  init_cells:   example1
+  init_cells:   example0
 });
 
 var toggleBttn = document.getElementById("toggleBttn");

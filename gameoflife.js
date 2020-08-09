@@ -8,12 +8,11 @@ var GameOfLife = function(params){
       init_cells  = params["init_cells"]  || [],
       canvas_id   = params["canvas_id"]   || "life",
 
-      colourful   = params["colourful"] || params["colorful"] || false,
-
       cell_array = [],
-      display     = new GameDisplay(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id, colourful),
-      interval = null,    // Will store reference to setInterval method -- this should maybe be part of GameDisplay
-      init        = function() {
+      display = new GameDisplay(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id),
+      interval = null,    // Will store reference to setInterval method 
+
+      init = function() {
         // Convert init_cells array of 0's and 1's to actual Cell objects
         var length_y = init_cells.length,
             length_x,
@@ -111,8 +110,8 @@ var GameOfLife = function(params){
         next_gen[1][1].setState("dead");
 */
         return next_gen;
-      }
-  ;
+      };
+
   init();
   return {
     // Returns the next generation array of cells
@@ -127,8 +126,7 @@ var GameOfLife = function(params){
     getCurrentGenCells: function() {
       return cell_array;
     },
-    // Add "The" to function name to reduce confusion
-    //  (even though we *could* technically use just setInterval)
+    
     setTheInterval: function(the_interval) {
       interval = the_interval;
     },
@@ -138,12 +136,7 @@ var GameOfLife = function(params){
   };
 };
 
-// This is an object that will take care of all display-related features.
-// Theoretically, you should be able to use any method of display without
-// too much extra code. i.e. if you want to display the game using HTML tables,
-// svg, or whatever other method you feel like. Just create a new <___>Display
-// Object!
-var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id, colourful) {
+var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id) {
   var canvas = document.getElementById(canvas_id),
       ctx = canvas.getContext && canvas.getContext('2d'),
       width_pixels = num_cells_x * cell_width,
